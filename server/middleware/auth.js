@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {
+  console.log("req.cookies",req.cookies)
   const token = req.cookies.token; // Read token from cookie
   if (!token) return res.status(401).json({ message: 'No token provided' });
   try {
