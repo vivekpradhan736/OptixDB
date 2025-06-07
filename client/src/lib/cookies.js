@@ -1,5 +1,6 @@
 // Check if a specific cookie exists
 export const getCookie = (name) => {
+  console.log("document.cookie",document.cookie)
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   console.log("parts",parts)
