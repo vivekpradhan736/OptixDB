@@ -14,10 +14,10 @@ router.post('/register', async (req, res) => {
     await user.save();
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.cookie('token', token, {
-      // httpOnly: true, // Prevent JavaScript access
+      httpOnly: false,
       secure: process.env.NODE_ENV === 'production', // Use secure cookies in production (HTTPS)
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      maxAge: 3600000, // 1 hour in milliseconds
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 1 hour in milliseconds
     });
     res.json({ token, user: { id: user._id, name, email, apiKey: user.apiKey, cloudName: user.cloudName } });
   } catch (err) {
@@ -35,10 +35,10 @@ router.post('/login', async (req, res) => {
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.cookie('token', token, {
-      // httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      maxAge: 3600000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.json({ token, user: { id: user._id, name: user.name, email, apiKey: user.apiKey, cloudName: user.cloudName } });
   } catch (err) {
