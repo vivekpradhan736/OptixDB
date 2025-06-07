@@ -36,6 +36,7 @@ function Login() {
     useEffect(() => {
       const isAuthenticated = store.getState().auth.isAuthenticated || hasTokenCookie();
       if (isAuthenticated) {
+        console.log("test 3")
         navigate('/');
       }
       else{

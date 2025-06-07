@@ -40,6 +40,7 @@ function SignUp() {
           navigate('/');
         }
         else{
+          console.log("test 4")
           navigate('/signup');
         }
       }, [navigate]);

@@ -16,6 +16,7 @@ const ProtectedRoute = ({ children }) => {
     const isAuth = store.getState().auth.isAuthenticated || hasTokenCookie();
     setIsAuthenticated(isAuth)
     if (!isAuth) {
+      console.log("test 2")
       navigate('/login');
     }
   }, [navigate]);

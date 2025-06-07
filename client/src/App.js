@@ -25,9 +25,10 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    const isAuthenticated = store.getState().auth.isAuthenticated || hasTokenCookie();
+    const isAuthenticated = hasTokenCookie();
     console.log("isAuthenticated", isAuthenticated);
     if (!isAuthenticated) {
+      console.log("test 1")
       navigate('/login');
     }
   }, [navigate]);
