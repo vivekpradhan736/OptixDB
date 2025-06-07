@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "./Sidebar";
 import MobileNavigation from "./MobileNavigation";
 import Header from "./Header";
 import { hasTokenCookie } from "../lib/cookies";
 import store from "../redux/store";
+import { getLoginUser } from "../redux/authSlice";
 
 const ProtectedRoute = ({ children }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, token } = useSelector((state) => state.auth); 
 
 
   useEffect(() => {
-    const isAuth = store.getState().auth.isAuthenticated || hasTokenCookie();
-    setIsAuthenticated(isAuth)
-    if (!isAuth) {
-      console.log("test 2")
+    dispatch(getLoginUser());
+    if(token == null){
       navigate('/login');
     }
-  }, [navigate]);
+    setIsAuthenticated(true)
+  }, [dispatch, navigate, token]);
 
   return (
     <>

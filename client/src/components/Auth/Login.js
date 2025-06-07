@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { login } from '../../redux/authSlice';
@@ -32,17 +32,17 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user, token } = useSelector((state) => state.auth); 
   
     useEffect(() => {
-      const isAuthenticated = store.getState().auth.isAuthenticated || hasTokenCookie();
-      if (isAuthenticated) {
+      if (token) {
         console.log("test 3")
         navigate('/');
       }
       else{
         navigate('/login');
       }
-    }, [navigate]);
+    }, [navigate, token]);
 
   const formSchema = authFormSchema();
     const form = useForm({

@@ -12,26 +12,30 @@ import GettingStarted from './components/GettingStarted.js';
 import ApiKey from './components/ApiKey.js';
 import store from './redux/store.js';
 import { hasTokenCookie } from './lib/cookies.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getLoginUser } from './redux/authSlice.js';
 import Home from './components/Home.js';
 
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user, token } = useSelector((state) => state.auth); 
 
   useEffect(() => {
     dispatch(getLoginUser());
-  }, [dispatch]);
-
-  useEffect(() => {
-    const isAuthenticated = hasTokenCookie();
-    console.log("isAuthenticated", isAuthenticated);
-    if (!isAuthenticated) {
-      console.log("test 1")
+    if(token == null){
       navigate('/login');
     }
-  }, [navigate]);
+  }, [dispatch, token, navigate]);
+
+  // useEffect(() => {
+  //   const isAuthenticated = hasTokenCookie();
+  //   console.log("isAuthenticated", isAuthenticated);
+  //   if (!isAuthenticated) {
+  //     console.log("test 1")
+  //     navigate('/login');
+  //   }
+  // }, [navigate]);
   
   return (
     <div className="flex h-screen bg-[#f2f4f8]">
