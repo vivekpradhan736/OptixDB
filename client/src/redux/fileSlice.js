@@ -31,6 +31,7 @@ export const fetchFiles = createAsyncThunk(
     try {
       const url = 'https://optixdb-backend.onrender.com/api/file/files';
       const res = await axios.get(url, { withCredentials: true });
+      console.log("req --->",res.data)
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to fetch files');
