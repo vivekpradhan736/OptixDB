@@ -9,7 +9,7 @@ function Profile() {
   useEffect(() => {
     const fetchUsage = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/file/files', {
+        const res = await axios.get('https://optixdb-backend.onrender.com/api/file/files', {
           withCredentials: true,
         });
         const totalSize = res.data.reduce((sum, file) => sum + file.size, 0);

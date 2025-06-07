@@ -6,7 +6,7 @@ export const getLoginUser = createAsyncThunk(
   'auth/getLoginUser',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get('http://localhost:5000/api/auth/me', {
+      const res = await axios.get('https://optixdb-backend.onrender.com/api/auth/me', {
         withCredentials: true,
       });
       console.log("res.data",res.data)
@@ -23,7 +23,7 @@ export const loginUser = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/auth/login',
+        'https://optixdb-backend.onrender.com/api/auth/login',
         { email, password },
         { withCredentials: true }
       );
@@ -39,7 +39,7 @@ export const logoutUser = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/logout', {}, {
+      const res = await axios.post('https://optixdb-backend.onrender.com/api/auth/logout', {}, {
         withCredentials: true });
       return null;
     } catch (err) {

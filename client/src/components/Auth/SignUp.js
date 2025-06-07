@@ -61,7 +61,7 @@ function SignUp() {
       const name = values.name;
       const email = values.email;
       const password = values.password;
-      const res = await axios.post('http://localhost:5000/api/auth/register', { name, email, password }, {withCredentials: true,});
+      const res = await axios.post('https://optixdb-backend.onrender.comnd.onrender.com/api/auth/register', { name, email, password }, {withCredentials: true,});
       dispatch(login({ token: res.data.token, user: res.data.user }));
       navigate('/dashboard');
     } catch (err) {

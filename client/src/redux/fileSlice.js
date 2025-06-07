@@ -10,12 +10,12 @@ export const uploadFile = createAsyncThunk(
       formData.append('file', file);
       if (folderId) formData.append('folderId', folderId);
       if (folder) formData.append('folder', folder);
-      await axios.post('http://localhost:5000/api/file/upload', formData, {
+      await axios.post('https://optixdb-backend.onrender.com/api/file/upload', formData, {
         headers: { Authorization: `Bearer ${apiKey}` },
       });
       const url = folderId
-        ? `http://localhost:5000/api/folder/${folderId}/files`
-        : 'http://localhost:5000/api/file/files';
+        ? `https://optixdb-backend.onrender.com/api/folder/${folderId}/files`
+        : 'https://optixdb-backend.onrender.com/api/file/files';
       const res = await axios.get(url, { withCredentials: true });
       return res.data;
     } catch (err) {
@@ -29,7 +29,7 @@ export const fetchFiles = createAsyncThunk(
   'files/fetchFiles',
   async ( _, { rejectWithValue }) => {
     try {
-      const url = 'http://localhost:5000/api/file/files';
+      const url = 'https://optixdb-backend.onrender.com/api/file/files';
       const res = await axios.get(url, { withCredentials: true });
       return res.data;
     } catch (err) {
@@ -42,7 +42,7 @@ export const fetchFolderFiles = createAsyncThunk(
   'files/fetchFolderFiles',
   async ({ folderId } = {}, { rejectWithValue }) => {
     try {
-      const url = `http://localhost:5000/api/folder/${folderId}/files`
+      const url = `https://optixdb-backend.onrender.com/api/folder/${folderId}/files`
       const res = await axios.get(url, { withCredentials: true });
       return res.data;
     } catch (err) {
@@ -56,7 +56,7 @@ export const deleteFile = createAsyncThunk(
   'files/deleteFile',
   async ({ fileId }, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:5000/api/file/files/${fileId}`, {
+      await axios.delete(`https://optixdb-backend.onrender.com/api/file/files/${fileId}`, {
         withCredentials: true,
       });
       return fileId;
@@ -71,7 +71,7 @@ export const fetchStorageUsage = createAsyncThunk(
   'files/fetchStorageUsage',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get('http://localhost:5000/api/storage/usage', {
+      const res = await axios.get('https://optixdb-backend.onrender.com/api/storage/usage', {
         withCredentials: true,
       });
       return res.data;
@@ -86,7 +86,7 @@ export const fetchFileTypeSummary = createAsyncThunk(
   'files/fetchFileTypeSummary',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get('http://localhost:5000/api/storage/summary', {
+      const res = await axios.get('https://optixdb-backend.onrender.com/api/storage/summary', {
         withCredentials: true,
       });
       return res.data;

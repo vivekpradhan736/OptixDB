@@ -27,7 +27,7 @@ formData.append('file', fs.createReadStream(FILE_PATH));
 if (folderName) formData.append('folder', folderName);
 
 // Make the POST request
-axios.post('http://localhost:5000/api/file/upload', formData, {
+axios.post('https://optixdb-backend.onrender.com/api/file/upload', formData, {
   headers: {
     ...formData.getHeaders(),
     Authorization: \`Bearer \${apiKey}\`,
@@ -56,7 +56,7 @@ axios.post('http://localhost:5000/api/file/upload', formData, {
   if (folderName) formData.append('folder', folderName);
 
   try {
-    const response = await fetch('http://localhost:5000/api/file/upload', {
+    const response = await fetch('https://optixdb-backend.onrender.com/api/file/upload', {
       method: 'POST',
       headers: {
         Authorization: \`Bearer \${apiKey}\`,
@@ -94,7 +94,7 @@ export default function UploadPage() {
     if (folderName) formData.append('folder', folderName);
 
     try {
-      const res = await fetch('http://localhost:5000/api/file/upload', {
+      const res = await fetch('https://optixdb-backend.onrender.com/api/file/upload', {
         method: 'POST',
         headers: {
           Authorization: \`Bearer \${apiKey}\`,
@@ -141,7 +141,7 @@ file_path = "path/to/your/file.jpg"  # Update this to your actual file
 folder_name = "my-folder"  # Optional
 
 # API endpoint
-url = "http://localhost:5000/api/file/upload"
+url = "https://optixdb-backend.onrender.com/api/file/upload"
 
 # Prepare the file and form data
 with open(file_path, "rb") as file:

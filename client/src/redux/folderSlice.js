@@ -7,7 +7,7 @@ export const createFolder = createAsyncThunk(
   async ({ name }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/folder',
+        'https://optixdb-backend.onrender.com/api/folder',
         { name },
         { withCredentials: true }
       );
@@ -23,7 +23,7 @@ export const fetchFolders = createAsyncThunk(
   'folders/fetchFolders',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get('http://localhost:5000/api/folder', {
+      const res = await axios.get('https://optixdb-backend.onrender.com/api/folder', {
         withCredentials: true,
       });
       return res.data;
@@ -38,7 +38,7 @@ export const deleteFolder = createAsyncThunk(
   'folders/deleteFolder',
   async ({ folderId }, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:5000/api/folder/${folderId}`, {
+      await axios.delete(`https://optixdb-backend.onrender.com/api/folder/${folderId}`, {
         withCredentials: true,
       });
       return folderId;

@@ -24,7 +24,7 @@ const Assets = ({ searchParams, params }) => {
   useEffect(() => {
         // const fetchFiles = async () => {
         //   try {
-        //     const res = await axios.get('http://localhost:5000/api/file/files', {
+        //     const res = await axios.get('https://optixdb-backend.onrender.com/api/file/files', {
         //       withCredentials: true,
         //     });
         //     dispatch(setFiles(res.data));
