@@ -60,6 +60,7 @@ function Login() {
       const res = await axios.post('https://optixdb-backend.onrender.com/api/auth/login', { email, password }, {
         withCredentials: true,
       });
+      console.log("res",res)
       dispatch(login({ token: res.data.token, user: res.data.user }));
       navigate('/dashboard');
     } catch (err) {
