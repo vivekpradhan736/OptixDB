@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
     res.cookie('token', token, {
       // httpOnly: true, // Prevent JavaScript access
       secure: process.env.NODE_ENV === 'production', // Use secure cookies in production (HTTPS)
-      sameSite: 'strict', // Prevent CSRF
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 3600000, // 1 hour in milliseconds
     });
     res.json({ token, user: { id: user._id, name, email, apiKey: user.apiKey, cloudName: user.cloudName } });
@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.cookie('token', token, {
-      httpOnly: true,
+      // httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 3600000,
