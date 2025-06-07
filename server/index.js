@@ -12,7 +12,7 @@ const folderRoutes = require('./routes/folder.js');
 dotenv.config();
 const app = express();
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' })); // Allow credentials
+app.use(cors({ credentials: true, origin: 'https://optix-db.vercel.app' })); // Allow credentials
 app.use(cookieParser()); // Add cookie-parser middleware
 app.use(express.json());
 app.use('/api/auth', authRoutes);
