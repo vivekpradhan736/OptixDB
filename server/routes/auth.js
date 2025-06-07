@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 3600000,
     });
     res.json({ token, user: { id: user._id, name: user.name, email, apiKey: user.apiKey, cloudName: user.cloudName } });
