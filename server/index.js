@@ -7,7 +7,7 @@ const authRoutes = require('./routes/auth.js');
 const fileRoutes = require('./routes/file.js');
 const apikeyRoutes = require('./routes/apikey.js');
 const storageRoutes = require('./routes/storage.js');
-const folderRoutes = require('./routes/folder');
+const folderRoutes = require('./routes/folder.js');
 
 dotenv.config();
 const app = express();
